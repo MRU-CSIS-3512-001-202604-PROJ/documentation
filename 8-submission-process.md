@@ -12,7 +12,7 @@
 
 ## Your database scripts
 
-- [ ] `/the-project-template/database/schema.sql` and `/the-project-template/database/seed.sql` are both committed and pushed.
+- [ ] `database/schema.sql` and `database/seed.sql` are both committed and pushed.
 - [ ] `php database/build.php` runs cleanly **from a fresh clone** of your repository.
   - _Test this properly. Clone your own repo into a new folder, run the build, start the site. If it doesn't work there, it won't work for me either, and "it works on my machine" is not something I can mark._
 - [ ] `database/app.db` is **not** committed.
@@ -24,6 +24,7 @@
 I will be marking in December. Your Dashboard needs to show real numbers, which means your seed data has to cooperate:
 
 - [ ] Plays exist in **both November and December**, so the this-month and last-month analytics both have something to report.
+  - _Put your December plays in the first week of the month. I mark on December 6th, so plays dated the 20th are real as far as your queries are concerned, but you won't be able to eyeball whether the numbers look right._
 - [ ] Plays are spread across **all seven days of the week**, so the day-of-week analytic isn't mostly zeroes.
 - [ ] Plays are spread across **a variety of games**, so your top-five list isn't a five-way tie at one play each.
 - [ ] Both standard and premium members have logged plays, so the plays-per-member analytic can compare them.
@@ -44,7 +45,7 @@ I need a member I can log in as, whose data exercises every case in the public-f
 
 **If the checklist is not present, or has not been completed, I will not mark your Project and it will receive a mark of zero.**
 
-_Read the Honesty Clause in the Marking Scheme before you fill it in. Checking something you haven't finished costs you the entire bundle; leaving it unchecked costs you only that one item. Honest self-assessment is genuinely in your interest here._
+_Read the Honesty Clause in the Marking Scheme before you fill it in. An unchecked item costs you that bundle and leaves your revision token available; a checked item that doesn't work costs you that bundle **and** your token. Honest self-assessment is genuinely in your interest here._
 
 ---
 
@@ -86,9 +87,9 @@ _An example email:_
 
 I will begin pulling down project repositories early on **Sunday, December 6**. I can't give you an exact time, but it will be somewhere between 2 AM and 4 AM. Whatever is in your repository at that moment is what I mark. Anything pushed afterwards will not be.
 
-_So yes, technically you can squeeze out a couple of extra hours between midnight and 2 AM on the Sunday, or roll the dice on me sleeping in. I'll be honest with you: in my experience, code written at 3 AM on the day of a deadline tends to break things that were previously working, and the stress is not worth the marks. Please don't._
+_The deadline is the end of Saturday. I start pulling repositories in the small hours of Sunday, so yes, there's a gap between those two things. Don't plan your December around it. Code written at 3 AM on deadline day tends to break things that were previously working, and I have never once seen the stress be worth the marks. Whatever is in your repository when I pull is what I mark._
 
-I will mark over that weekend and send your feedback as an **Issue in your project repository** - the same way you get lab test feedback - with an email to let you know it's there. Expect that by **Tuesday, December 8** at the latest.
+I mark on Sunday and Monday and send your feedback as an **Issue in your project repository** - the same way you get lab test feedback - with an email to let you know it's there. Expect that by the **end of Tuesday, December 8** at the latest.
 
 ---
 
@@ -101,7 +102,7 @@ The full rules are in the Marking Scheme. The short version:
 - The token expires at **4 PM on Wednesday, December 16**.
 - It applies to bundles only. Additional marks are a single judgement call and can't be resubmitted.
 
-_The window deliberately runs into the exam period rather than ending on the last day of classes. Your December Project mark is an estimate anyway - the cap can't be calculated until your final exam is marked - so there's no reason to cram the token into the two days when you have a cumulative lab test to sit._
+_The window deliberately runs into the exam period rather than ending on the last day of classes. Your December Project mark is an estimate anyway - the cap can't be calculated until your final exam is marked - so there's no reason to cram the token into December 8th, the one day between your two cumulative lab test sittings._
 
 _That said: if your time in the exam period is better spent studying, spend it studying. You have other courses. And our final exam is worth more than your token is, it isn't capped, and a better exam mark raises your cap. Make that trade deliberately._
 
@@ -109,7 +110,7 @@ _That said: if your time in the exam period is better spent studying, spend it s
 
 # When You'll Get Your Marks
 
-You will hear your **provisional** Project mark by December 8th at the latest, as described above.
+You will hear your **provisional** Project mark by the end of December 8th at the latest, as described above.
 
 That mark is the **maximum** you can receive. Your actual Project mark depends on the "Hard Ceiling" cap described in the course outline, which can't be calculated until your final exam is marked and your core assessment average is known.
 

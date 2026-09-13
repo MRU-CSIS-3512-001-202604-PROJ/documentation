@@ -12,7 +12,17 @@ This project is graded using a version of something called **specifications grad
 
 My role is to **verify the accuracy** of the items you've checked. A bundle is **satisfactory** only if you have checked all its corresponding items **and** I confirm they are functional.
 
-If you obtain the highest level bundle (which works out to be an A-), you have the opportunity to obtain additional marks as well to bring your mark to the A or A+ level.
+**How bundles turn into a mark.** The bundle you reach is your raw Project percentage: reaching the 70-Level Bundle is a raw mark of 70%, and any additional marks are added on top of that.
+
+Bundles are cumulative. Your mark is the highest bundle for which that bundle _and every bundle beneath it_ are satisfactory. A satisfactory 70-Level Bundle does nothing for you if the 50-Level Bundle underneath it is unsatisfactory.
+
+I mark every bundle anyway, not just up to the first one that fails, so your feedback tells you which bundles were satisfactory and which weren't. That matters if you use your revision token: fixing the single unsatisfactory bundle promotes you to the highest level that is then unbroken.
+
+If the 30-Level Bundle is unsatisfactory, the Project mark is zero.
+
+Additional marks are available on top of the bundle you reach. Two of the three categories - Data Model Quality and Development History - open up as soon as your 50-Level Bundle is satisfactory, so they are live for most people. The third, UI/UX, requires the 80-Level Bundle.
+
+Reaching the 80-Level Bundle is a raw mark of 80%, which is an A-. From there, all three categories are available, and they are what can take you to an A or an A+.
 
 _Note: the Project mark you receive from me is capped relative to your core assessment average, as described in the course outline. That calculation happens after the final exam, so the mark you get from me in December is the **maximum** you can receive, not necessarily your final Project mark. Nothing in this document changes that; it determines your raw Project mark, which the cap is then applied to._
 
@@ -28,6 +38,13 @@ The checklist contains items marked as a **[DEALBREAKER]**. These represent the 
 
 If I find that **any** checked [DEALBREAKER] item is actually non-functional, I will stop marking immediately.
 
+**Dealbreakers, marking, and your token.** Two different things can go wrong with a [DEALBREAKER] item, and they don't have the same consequence:
+
+- You **leave it unchecked**, honestly. Its bundle is Unsatisfactory. I carry on marking the rest of your bundles as normal, and your token is available for that bundle like any other.
+- You **check it and it doesn't work**. I stop marking at that point. That bundle is Unsatisfactory, nothing above it is assessed, no additional marks are awarded, and under the Honesty Clause your token cannot be spent on it. Your mark is the highest bundle already established beneath it.
+
+A dealbreaker can be repaired with your token only if you were straight with me about it in the first place.
+
 ---
 
 ## 🎟️ Revision Token
@@ -38,7 +55,7 @@ Your token lets you fix **one** bundle that was marked "Unsatisfactory" and have
 
 ### How it works
 
-- I will mark projects December 6 and 7, and send your feedback as an Issue in your project repository, with an email to let you know it's there. Expect that by the morning of **Tuesday, December 8** at the latest.
+- I will mark projects on Sunday December 6 and Monday December 7, and send your feedback as an Issue in your project repository, with an email to let you know it's there. Expect that by the **end of Tuesday, December 8** at the latest.
 - If you want to use your token, email me to say so.
 - You then meet me in my office and **show me the changes you've made**. Plan for about 15 minutes. This is not a resubmission, and I will not re-mark your whole project - you show me the specific things from your fixed bundle that are now working. Full stop.
 - You only have **one** token, good for **one** meeting. You get **one** shot.
@@ -47,7 +64,7 @@ Your token lets you fix **one** bundle that was marked "Unsatisfactory" and have
 
 ### Why the window runs that long
 
-Running the window into the exam period instead gives you eight days rather than the one or two right before the cumulative lab exam. That's a mercy.
+Running the window into the exam period gives you eight days rather than December 8th - which, this year, is the single day between Part A and Part B of your cumulative lab test. That's a mercy.
 
 _This **does** mean you could end up doing Project revisions instead of final exam study, and only you can judge whether that's a good trade. It's a fifteen-minute conversation, not an entire Project rebuild - but if your time is better spent on your final exams, or mental health days, by all means, spend it on those things! Definitely also keep in mind that our final exam is worth more than the token is, it isn't capped, and it raises your cap._
 
@@ -59,7 +76,13 @@ _If illness or another serious circumstance means you can't use your token in th
 
 Your self-assessment (i.e. your submission checklist) must be accurate. A bundle will be marked **Unsatisfactory** if any single checked item is not actually complete.
 
-This is not me trying to catch you out. Checking an item you haven't finished costs you the whole bundle, whereas leaving it unchecked costs you only that item's bundle. Honest self-assessment is strictly in your interest.
+Leaving an item unchecked also makes that bundle Unsatisfactory - I'm not going to pretend otherwise. The difference is what happens next:
+
+- An **unchecked** item is an honest gap. The bundle is Unsatisfactory, and that is exactly the kind of bundle your revision token exists to repair.
+- A **`B`** is an unchecked box with an explanation attached. Same effect on the bundle, and your token stays available. Use it when something half-works and you'd rather I knew that than found out by myself (which tends to make me grumpy, and you don't want the person marking your work to get grumpy).
+- A **checked** item that isn't actually complete is an inaccurate submission. That bundle is Unsatisfactory **and it is not eligible for your revision token.**
+
+So the only thing over-checking can buy you is the loss of your one repair. Check what works, leave the rest unchecked, and list anything half-finished under Known Bugs.
 
 ---
 
@@ -70,9 +93,9 @@ This is not me trying to catch you out. Checking an item you haven't finished co
 This bundle covers the non-negotiable technical requirements for the project to be gradable.
 
 - [ ] All checklist items marked **[DEALBREAKER]** under "Part 1: Underlying Code & Submission Checks → **Administrative Portal**" are checked and verified.
-- [ ] `/the-project-template/database/schema.sql` and `/the-project-template/database/seed.sql` are both committed, and `php database/build.php` runs cleanly from a fresh clone of your repository.
-- [ ] Those two scripts create and populate all tables necessary for the Project, with at least 100 records each.
-  - _"Necessary" means the tables your Project actually needs. You do not need 100 administrators._
+- [ ] `database/schema.sql` and `database/seed.sql` are both committed, and `php database/build.php` runs cleanly from a fresh clone of your repository.
+- [ ] Those two scripts create and populate every table the work you are submitting actually uses, with enough data for the sites to function.
+  - _You do not need 100 administrators. If you didn't reach the public-facing app, I'm not looking for its tables here._
 - [ ] I believe you have made a "reasonable attempt" at completing at least the Administrative Portal. I'll use my best judgement and your Git history to help me determine this if necessary.
   - _To be plain about one case: a repository whose entire history is one or two large code dumps in the final few days is not a reasonable attempt, regardless of what the code does. Build this over the term._
 - [ ] `submission-checklist.md` is submitted and accurately completed. (See Honesty Clause above.)
@@ -96,8 +119,10 @@ This bundle adds data manipulation and reporting to the administrative portal.
 - [ ] All checklist items under "Part 2 → Administrative Portal → **Venue Listings Page**" are checked and verified.
 - [ ] Your plays tables can represent a play with an arbitrary number of players, each with their own score. I will test this by adding a play with five players directly to your database and confirming your Dashboard still reports correctly.
   - _None of the Dashboard analytics force this on their own, which is exactly why it's here. If your structure only works for two players, you won't discover it until WK-11, when Log a Play needs it and there's no time left to redesign._
+- [ ] Every table your Project uses has at least 100 records, the administrator table excepted.
+- [ ] Your seed data produces meaningful, non-zero Dashboard analytics for both November and December, as described under Part 1 → Test Data for Marking.
 
-_Completing this bundle means your PHP site is done. If you reach the end of Reading Week with this bundle satisfied, you are in good shape._
+_Completing this bundle means your PHP site is done. By the end of Reading Week you should have everything in it except the Login Page and the authorization work - that is, the Dashboard, Member Data and Venue Listings pages all working against your database. WK-06 adds login, authorization and the previous-login feature, and finishes the bundle._
 
 ### 60-Level Bundle: Reduced Public App Core
 
@@ -107,6 +132,8 @@ This bundle establishes that the public-facing app runs, authenticates, and read
 - [ ] All checklist items marked **[DEALBREAKER]** under "Part 1: Underlying Code & Submission Checks → **Public-Facing App**" are checked and verified.
 - [ ] All checklist items under "Part 2 → Public-Facing App → **Login Page**" are checked and verified.
 - [ ] All checklist items under "Part 2 → Public-Facing App → **Personal Dashboard Page (Reduced)**" are checked and verified.
+- [ ] Your scripts create and populate the additional tables the public-facing app requires - wishlists, preferred venues, and connections between members - with at least 100 records each.
+- [ ] The test member described under Part 1 → Test Data for Marking exists, and I have their email and cell number from your submission email.
 
 ### 70-Level Bundle: Public App Core
 
@@ -115,6 +142,7 @@ This bundle establishes the full read-and-modify functionality of the public app
 - [ ] All requirements in the **60-Level Bundle** are met.
 - [ ] All checklist items under "Part 2 → Public-Facing App → **Personal Dashboard Page (Full)**" are checked and verified.
 - [ ] All checklist items under "Part 2 → Public-Facing App → **Find a Player Page**" are checked and verified.
+- [ ] Your test member's data exercises every case described under Part 1 → Test Data for Marking: two or more connections, a wishlist game no connection wants and one that two or more do, and a wishlist game featured at a preferred venue and one featured at none.
 
 ### 80-Level Bundle: Full-Featured Application & Professional Polish
 
@@ -142,7 +170,7 @@ _The reasoning, since you're entitled to it: the first two categories are about 
 
 _The bundles are 10 points apart and the first two categories total 10, so this can never push you past a student who earned a higher bundle. At most it draws you level with one who earned no additional marks at all._
 
-_If a [DEALBREAKER] item fails, I stop marking, which means no additional marks either._
+_If a **checked** [DEALBREAKER] item fails, I stop marking, which means no additional marks either._
 
 _I realize that a lot of these marks are subjective and/or the requirements or point allocations are vague. This is partly by intent and partly because that's the nature of this work._
 
@@ -152,7 +180,7 @@ _Available from the 50-Level Bundle._
 
 The bundles above only ever check that your pages produce the right output. This category is about _how_ your database is put together underneath, because a schema that produces correct results today can still be one you'd regret the moment anything changed.
 
-I will read `/the-project-template/database/schema.sql` with these questions in mind: is anything stored that should be derived? Are foreign keys declared where relationships exist? Can the plays tables actually represent a game played by five people with five different scores, or do they only work because your test data never has more than a couple?
+I will read `database/schema.sql` with these questions in mind: is anything stored that should be derived? Are foreign keys declared where relationships exist? Can the plays tables actually represent a game played by five people with five different scores, or do they only work because your test data never has more than a couple?
 
 - [ ] 4: A sound schema. Sensibly normalised, foreign keys where they belong, and the plays tables genuinely model a play rather than approximating one.
 - [ ] 2: Works, but with a design flaw that would cause real trouble as soon as the application grew - a repeated column that should be a join, a missing foreign key, a table doing two jobs.

@@ -6,9 +6,11 @@
 
 [Still needs a lookthrough! JP, 2026-09-12]
 
-**Instructions:** Before submitting your project, go through this entire checklist in order. Test each feature and place a check (`x`) in the box only if you can confirm it works exactly as described. If a feature is buggy, note that by putting a `B` in the box instead AND note it in the `Known Bugs` section at the bottom of this document. Submitting an accurately completed checklist is part of the project's professionalism requirements.
+**Instructions:** Before submitting your project, go through this entire checklist in order. Test each feature and place a check (`x`) in the box only if you can confirm it works exactly as described. If a feature is buggy, put a `B` in the box instead of a check, and describe it in the `Known Bugs` section at the end of this document. A `B` counts the same as an empty box when I work out your bundles - it does not earn you the item. What it buys you is that I know you knew, and I know where to look.
 
-**Student Name:** xxxxx
+Before you fill this in, read the **Honesty Clause** in the Marking Scheme. An unchecked item costs you that bundle and leaves your revision token available; a checked item that turns out not to work costs you that bundle **and** your token.
+
+**Student Name:** ______________________________
 
 ---
 
@@ -16,10 +18,10 @@
 
 Any entry marked as **[DEALBREAKER]** must be checked for your Project submission to be marked.
 
-- [ ] `/the-project-template/database/schema.sql` and `/the-project-template/database/seed.sql` are both committed to my repository. **[DEALBREAKER]**
+- [ ] `database/schema.sql` and `database/seed.sql` are both committed to my repository. **[DEALBREAKER]**
 - [ ] `php database/build.php` runs cleanly from a fresh clone and produces a working database. **[DEALBREAKER]**
 - [ ] `database/app.db` is **not** committed to my repository.
-- [ ] My scripts create and populate all tables necessary for both sites to work properly, with at least 100 records each. (You do not need 100 administrators.)
+- [ ] My scripts create and populate every table my submitted work actually uses, with at least 100 records each. (You do not need 100 administrators.)
 - [ ] `npm run check` reports no problems.
 - [ ] My completed copy of this checklist is in the root of my repository. **[DEALBREAKER]**
 
@@ -41,13 +43,13 @@ Any entry marked as **[DEALBREAKER]** must be checked for your Project submissio
 
 ### Public-Facing App (JS)
 
+- [ ] My scripts create and populate the wishlist, preferred-venue and connection tables the public app needs, with at least 100 records each.
 - [ ] My app is a single page (one PHP view) that uses external JS to modify the DOM. **[DEALBREAKER]**
 - [ ] All my JavaScript is in external files loaded via `<script type="module">`. **[DEALBREAKER]**
 - [ ] My code does not use `onclick` or other `on...` event attributes in the HTML. **[DEALBREAKER]**
 - [ ] My code does not use the `innerHTML` property. **[DEALBREAKER]**
 - [ ] My code does not use `alert()`.
 - [ ] My code does not use third-party JS libraries (unless I received permission). **[DEALBREAKER]**
-- [ ] My code uses an HTML `<dialog>` element and vanilla JS to implement the Log a Play modal. **[DEALBREAKER]**
 - [ ] All my custom API endpoints follow the `/api/...` format.
 - [ ] All my API endpoints return a content type of `application/json`.
 - [ ] My API endpoint code obeys the same database rules as the administrative portal: `DatabaseHelper::run()` with bound parameters, no exceptions. **[DEALBREAKER]**
@@ -56,16 +58,18 @@ Any entry marked as **[DEALBREAKER]** must be checked for your Project submissio
 - [ ] I have used Promise chaining to consume at least one API endpoint.
 - [ ] I have used `async`/`await` to consume at least one API endpoint.
 - [ ] I have implemented caching of wishlist data using the Web API's localStorage.
+- [ ] My wishlist cache is keyed by member, so logging in as a different member doesn't show the previous member's wishlist.
 
 ### Test Data for Marking
 
 _I need a member I can log in as, whose data exercises every case. Set this up deliberately - don't assume your generated data happens to cover it._
 
-- [ ] There is a member I can log in as, and I have included their email and cell number in my submission email. **[DEALBREAKER]**
+- [ ] There is a member I can log in as, and I have included their email and cell number in my submission email.
 - [ ] That member has 2 or more connections.
 - [ ] That member has at least two games on their wishlist: one that none of their connections want to play, and one that 2 or more connections want to play.
 - [ ] That member has at least one wishlist game featured at one of their preferred venues, and at least one that is featured at none of them.
 - [ ] My database contains plays in **both** November and December, spread across different days of the week and different games, so the Dashboard analytics show meaningful non-zero numbers when I mark in December.
+- [ ] Both standard and premium members have logged plays, so the plays-per-member analytic has something to compare.
 
 ---
 
@@ -86,17 +90,18 @@ _Before starting, I have opened my browser in **Laptop L mode** (1440px wide)._
 - [ ] The login form obfuscates the password. [A4]
 - [ ] When I log in with `foo@foo.com` and `comp3512`, I wind up back at the login form with `foo@foo.com` filled in, the password field empty, and a suitably vague notification telling me the login was unsuccessful. [A5,A6,A8]
 - [ ] When I log in with `jpratt@mtroyal.ca` and `foo`, I wind up back at the login form with `jpratt@mtroyal.ca` filled in, the password field empty, and a suitably vague notification telling me the login was unsuccessful. [A5,A6,A8]
-- [ ] When I log in with `jpratt@mtroyal.ca` and `comp3512`, I land on the `/admin/dashboard` page, with the date and time in MST/MDT of my last login clearly visible. [A7,A8,A14]
+- [ ] When I log in with `jpratt@mtroyal.ca` and `comp3512`, I land on the `/admin/dashboard` page. [A7,A8]
 
 #### Dashboard Page
 
 - [ ] There is a clear way to log out; doing so takes me back to the Login Page with an empty login form. [A11]
 - [ ] There is a clear way to get to the Member Data Page and it has resource path `/admin/members`. [A12,A16]
 - [ ] There is a clear way to get to the Venue Listings Page and it has resource path `/admin/venues`. [A13,A25]
+- [ ] When I first land here after logging in, the date and time of my previous login is clearly visible, in MST/MDT - or, if this is the very first login for that account, whatever my site shows instead. [A14]
 - [ ] If I leave this page and come back, the date/time of my last login is no longer visible, and I've used cookies to accomplish this. [A14]
 - [ ] **Analytic 1:** plays logged this calendar month, shown alongside plays logged last calendar month. [A15]
 - [ ] **Analytic 2:** average plays per member this month, separately for standard and premium members, each to one decimal place. [A15]
-- [ ] **Analytic 3:** plays logged on each day of the week, with all seven days shown including any with none. [A15]
+- [ ] **Analytic 3:** plays logged on each day of the week, across all plays in the database, with all seven days shown including any with none. [A15]
 - [ ] **Analytic 4:** the five games played most this calendar month, in descending order of play count, with ties shown alphabetically. [A15]
 
 #### Member Data Page

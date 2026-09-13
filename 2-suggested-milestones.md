@@ -26,6 +26,9 @@ _Add/drop deadline is Monday. PHP Lab Test 1 is on Wednesday. This is a full wee
 
 - Receive the Project's starting repository.
 
+- Run `npm install` once in your project folder so that `npm run check` works.
+  - _You only need to do this once per machine, and it's why `node_modules/` is gitignored. Node is already installed on the lab machines._
+
 - Create rough sketches of the four administrative portal pages in any format you want - it doesn't have to be digital; in fact there are many benefits to just sketching something out on a whiteboard or piece of paper!
   - _I will be using Google Chrome's Device Mode at Laptop L size (1440px wide) to view your administrative portal site, so remember that when you're designing your layouts._
 
@@ -94,6 +97,20 @@ _Vertical bars, colour coding, rounded corners, a `<table>` instead of a list - 
 
 - _Yes, the Dashboard too. Bars mean nested elements and inline style attributes, which is exactly where markup errors like to hide._
 
+### A word about your commit history
+
+_Development History is worth 6% of your Project mark, and it's assessed by looking at your repository rather than by anything you write. What I want to see is a history that looks like someone building software: work showing up across the weeks, with messages that say what changed._
+
+_The practical version:_
+
+- **_Commit when you finish a thing, not when you finish a session._** _"Add venue grouping by province" is a commit. "Work on project" covering six hours and four features is not._
+
+- **_Push when you commit._** _A local history I can't see is worth nothing to you._
+
+- **_Weeks where you were busy with other things in your life and didn't touch the Project are expected_** _- there are eleven working weeks and the top band asks for seven. You don't need to commit on a schedule._
+
+_Ten thoughtful commits across ten weeks beats two hundred across three days._
+
 ## WK-03: Week of 2026-09-21
 
 _This is the heaviest database week of the semester. Start early._
@@ -105,11 +122,11 @@ _This is the heaviest database week of the semester. Start early._
   - _Members are straightforward. Plays are not. A play involves one game, one venue, one date, several players, and a score for each of those players. That is not one table. Work out how many it is, and how they connect, before you build anything._
 
 - Create all the tables you have determined you need, and populate them with data.
-  - _Table definitions go below the `YOUR TABLES` marker in `/the-project-template/database/schema.sql`; data goes below the `YOUR DATA` marker in `/the-project-template/database/seed.sql`. Rebuild with `php database/build.php`._
+  - _Table definitions go below the `YOUR TABLES` marker in `database/schema.sql`; data goes below the `YOUR DATA` marker in `database/seed.sql`. Rebuild with `php database/build.php`._
 
   - _Each table (except your administrator table) should have **100 or more** records. Do **not** go crazy here - if you make a ton of records, you will run into issues; not necessarily performance issues, just PITA issues for you as a developer._
 
-  - _`play` data must be spread across **September through December**, across **all seven days of the week**, and across **a good spread of different games**, or your Dashboard analytics will be empty or meaningless. Plan your generated data accordingly - this catches people out every single year._
+  - _`play` data must be spread across **September through December**, across **all seven days of the week**, and concentrated on a subset of games rather than scattered evenly - **250 or more plays across 30 to 40 games** gives you a top-five list with real winners in it, where 100 plays scattered across the whole catalogue gives you a twenty-way tie at one play each. Plan your generated data accordingly - this catches people out every single year._
 
 - Build and test the queries that return the four required Dashboard analytics. Do the same for the queries that sort and filter member data.
   - _Keep these queries somewhere so that you can eventually implement them with PHP. Getting them right in DB Browser for SQLite first is far easier than debugging them through PHP - you see the result set immediately, with nothing else in the way._
@@ -275,12 +292,15 @@ _The JS Midterm is on Wednesday, December 2. Wednesday's lab is a Project Work L
 
 _There are no new features in this week's milestone. That is deliberate - if you are still building features this week, you are behind, and you should be triaging rather than adding._
 
+- **Friday, December 4 is a final feedback opportunity.** Bring me something specific - a page that isn't behaving, a checklist item you can't get to pass, a query that returns the wrong numbers. I'll look at it there and then.
+  - _This is not a code review of your whole project, and there isn't time for one the day before the deadline. One focused question each, so everyone who wants a turn gets one. If you need longer than that, come and find me earlier in the week - Wednesday's Project Work Lab is the better slot for anything substantial._
+
 - Thoroughly test all application functionality using the submission checklist, fixing any issues.
   - _Do NOT forget to test W3C validation after adding a game and again after removing a game, to ensure your DOM manipulation does not introduce invalid markup._
 
 - Run `npm run check` one last time and fix anything it reports.
 
-- Confirm that `/the-project-template/database/schema.sql` and `/the-project-template/database/seed.sql` are both committed, that `php database/build.php` runs cleanly from a fresh clone, and that the resulting database produces non-zero Dashboard analytics for November and December.
+- Confirm that `database/schema.sql` and `database/seed.sql` are both committed, that `php database/build.php` runs cleanly from a fresh clone, and that the resulting database produces non-zero Dashboard analytics for November and December.
   - _Test this properly. Clone your own repository into a new folder, run the build, and start the site. If it doesn't work there, it won't work for me either._
 
 - Confirm the test member account required by the submission process exists and has the required data.

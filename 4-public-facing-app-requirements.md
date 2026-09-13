@@ -14,13 +14,15 @@ _Note: Each functionality below has a number in brackets after it, prefixed with
 
 _Note: As the term goes on (and on and on...) I will occasionally clarify a requirement. When I do, the clarification appears inline, tagged with the date it was added, like this: [2026-10-31]. Skim for those tags when you come back to this document._
 
-_Note: The word "page" used here is a little deceptive, as you are technically creating one "page" that only \***\*looks\*\*** like different pages to the user. Still, the word "page" is the most convenient to use, so we'll stick with that._
+_Note: The word "page" used here is a little deceptive, as you are technically creating one "page" that only **looks** like different pages to the user. Still, the word "page" is the most convenient to use, so we'll stick with that._
 
 _Note: There are a TON of useful features missing from these requirements - this is by design, for two reasons. First, the requirement list has to be kept small, given the limited amount of time we have. Second, missing requirements could be something you decide to implement at a future date if you want to continue to hone your web skills._
 
 ## **_Login_** Page
 
-_Last year this page simulated a one-time-password flow. I've dropped that this year - not because it wasn't useful, but because the term is compressed and I'd rather you spend that effort on the play-logging work, which is new. You still get your **&lt;dialog&gt;** experience; it just happens somewhere more sensible now._
+_Last year this page simulated a one-time-password flow. I've dropped that this year - not because it wasn't useful, but because the term is compressed and I'd rather you spend that effort on the play-logging work, which is new. You still get your `<dialog>` experience; it just happens somewhere more sensible now._
+
+_And before you ask why this site doesn't hash anything while the admin portal hashes at a cost of 15: it's the same reason those API endpoints are open. The public app is where you're learning JavaScript, and a second authentication system would cost you time without teaching you anything new. Real members would have passwords. Yours don't._
 
 ### Functionalities
 
@@ -89,7 +91,12 @@ _The main purpose of this page is to see my personal information and the games I
 
 - Adding and removing games must involve API endpoint calls to endpoints you design and implement on your PHP backend, which will add and remove records from appropriate database tables.
 
-- To get some experience with caching, wishlist data must be stored using the Web API's localStorage feature; if no wishlist data is stored in local storage, then API calls will be required, but if there **is** data, that data must be used in order to save a call to the API.
+- To get some experience with caching, wishlist data must be stored using the Web API's localStorage feature. On loading the Personal Dashboard: if there is wishlist data in local storage for this member, use it and make no API call; if there isn't, fetch it and store what comes back.
+  - _**Key the cache by member id.** `wishlist` is not good enough - member A logs out, member B logs in, and B is looking at A's wishlist. Something like `wishlist:17` is fine._
+
+  - _**Adding or removing a game updates the cache.** The rule above is about avoiding a redundant fetch when you already know the answer, not about showing stale data. After a successful add or remove, either update the stored data to match or clear it so the next load refetches. A game you just added that doesn't appear is a bug, not caching._
+
+  - _**Logging out clears it.** P6 says the login page is reset; this is part of that._
 
 - Removal of games, finding players, and logging plays should involve Event Delegation.
 
@@ -153,14 +160,15 @@ _The main purpose of this page is to help me find someone to play a game with._
 
 Now that you've read the page requirements, you will need to make additional database tables and records, and possibly modify tables you created for the Administrative Portal as well. (But hopefully not too much if you looked through these app requirements ahead of time.)
 
-As before, table definitions go below the `YOUR TABLES` marker in **`/the-project-template/database/schema.sql`**, data goes below the `YOUR DATA` marker in **`/the-project-template/database/seed.sql`**, and `php database/build.php` rebuilds `database/app.db` from the two. The `.db` file stays gitignored - if a table exists only there and not in the `.sql` files, it doesn't exist as far as I'm concerned.
+As before, table definitions go below the `YOUR TABLES` marker in **`database/schema.sql`**, data goes below the `YOUR DATA` marker in **`database/seed.sql`**, and `php database/build.php` rebuilds `database/app.db` from the two. The `.db` file stays gitignored - if a table exists only there and not in the `.sql` files, it doesn't exist as far as I'm concerned.
 
 Some suggestions:
 
 - Determine what additional tables will be necessary to meet the app's requirements. For example, the functional requirements strongly suggest that preferred venues are something that need to be tracked for each member. How will you do this? The same goes for wishlists.
 
 - Since there is no requirement for a feature that lets members add or remove connections, you must instead create a table that indicates what connections exist between the members you created for the Administrative Portal.
-  - _You already built your plays tables back in WK-03 so that the admin Dashboard analytics had something to report on. Now the public app writes to them. If your data model was sound, this costs you nothing. If it wasn't, you're going to find out this week - and this is exactly why I told you to do some planning back then._
+
+  _You already built your plays tables back in WK-03 so that the admin Dashboard analytics had something to report on. Now the public app writes to them. If your data model was sound, this costs you nothing. If it wasn't, you're going to find out this week - and this is exactly why I told you to do some planning back then._
 
 - Add the new tables to `schema.sql`, add their data to `seed.sql`, and rebuild.
 
@@ -194,7 +202,7 @@ You have to build a number of API endpoints for your pages. You must follow thes
 
   - Once after removing a different game.
 
-- Your app only has one route: /
+- Your app has only one **page** route: `/`. Everything else is an API route under `/api/...`, and those don't count against this - the restriction is that the member never navigates away from `/`.
 
 - All your JavaScript lives in external files, loaded with `<script type="module">`.
 

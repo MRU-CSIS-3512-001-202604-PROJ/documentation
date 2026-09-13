@@ -63,16 +63,22 @@ _The remaining functionalities assume I have logged in successfully:_
 - I want to be able to go to the **_Venue Listings_** Page easily. [A13]
 
 - I want to clearly see the date and time (in MST/MDT) when I had previously logged in - but only when I first land on this page after logging in; otherwise, I don't want to see that information. [A14]
+  - _What if the admin is logging in for the very first time? You can either sidestep the issue by making sure your db tables contain data that don't represent that situation, or you can display some kind of message indicating that the admin has never logged in before. (When I assess your Project, I will be logging in as myself, logging out, and then logging back in again.)_
 
-- _What if the admin is logging in for the very first time? You can either sidestep the issue by making sure your db tables contain data that don't represent that situation, or you can display some kind of message indicating that the admin has never logged in before. (When I assess your Project, I will be logging in as myself, logging out, and then logging back in again.)_
+  - _I don't care which of those two you pick, as long as neither one leaves a blank space or throws an error. The case I'm certain to see is the normal one, so the first-login case is yours to handle however you like._
 
 - I want to clearly see the following analytics: [A15]
+
+_Throughout these analytics, a play belongs to the month, and to the day of the week, of **the date the game was played** - the date captured when the play was logged, not the moment the row was written to the database. Your seed data is all written at the same instant when you run `build.php`, so the second reading would put every one of your plays in the same month and leave the rest empty._
 
 - The number of plays logged **this** calendar month, shown alongside the number logged **last** calendar month.
 
 - The average number of plays per member this month, for **standard** members and for **premium** members, each shown to one decimal place.
+  - _Be precise about what this counts, because it's easy to get two different numbers from the same data. A member counts as having played a play if they were one of its players. A play with four premium players therefore counts once for each of those four members - which means this analytic and the "plays this month" analytic above are counting different things, and that's expected._
 
-- The number of plays logged on each day of the week. All seven days are shown, including any day with no plays.
+  - _Divide by **every** member on that plan, not just the ones who played. A plan whose members mostly sat out this month should show a low average; that's the analytic telling you something true._
+
+- The number of plays logged on each day of the week, across **all** plays in the database rather than a single month. All seven days are shown, including any day with no plays.
 
 - The five games played the most **this** calendar month, in descending order of play count. If a tie means more than five games qualify, all tied games are shown, in alphabetic order within the tie.
 
@@ -80,7 +86,12 @@ _The remaining functionalities assume I have logged in successfully:_
 
 - All analytics are pulled from database tables; they're not hard-coded or generated programmatically. Because of this, you will need to make additional tables and records for those tables. See the Required Database Tables & Records section below.
 
-- The "show previous login time" feature must be done using cookies.
+- The "show previous login time" feature must be done using cookies - but be clear about which part the cookie is doing:
+  - _The **timestamp itself** lives in your administrator table. That's what the hint on the Login page is pointing at: record when each administrator logs in, and you have last-login for free._
+
+  - _The **cookie** is what makes it appear once and then stop appearing. Land on the Dashboard with no cookie set, show the time and set the cookie; land on it with the cookie set, show nothing._
+
+  - _**Clear that cookie when someone logs in** (or when they log out - pick one and be consistent). If you don't, the message shows exactly once ever, and then never again for anybody, including me when I mark it. This is the single most common way this requirement fails._
 
 - _Read those analytics carefully, because they have a consequence you may not have noticed yet. To report on how many plays happened, when they happened, which games were played, and who was involved, you need somewhere to record that a game **was** played - by whom, where, when, and with what score. That's the plays data. You are building it now, in the PHP half of the term, for this dashboard. In the JavaScript half, the public-facing app is going to write to those very same tables. If your data model is sound, that costs you nothing later. If it isn't, you'll find out in November, which is a much worse time to find out. This is why I keep telling you to think carefully about your DB design :)._
 
@@ -144,17 +155,23 @@ _The remaining functionalities assume I have logged in successfully:_
 - I want to see the names of all venues in the database, grouped by Province. [A30]
 
 - I want to be able to show which games are currently featured at a given venue by clicking on that venue; when I do, I see the names of the three games (or fewer) that are featured there. [A31]
+  - _"Clicking" here does not mean JavaScript - there is none in this portal. Two approaches both work, and I'm happy with either:_
+    1. _A **hyperlink with a query string** (`/admin/venues?venue=42`) that reloads the page with that venue's featured games shown. Same technique as the sorting requirement, and it keeps your page much smaller - only the venue you're looking at needs an add-form and remove links._
+
+    2. _An HTML **`<details>`/`<summary>`** element per venue, which expands in place with no round trip. Valid markup, but bear in mind that all hundred venues are then on the page at once, each with its own form._
+
+  - _If you take the first approach, watch what happens after adding or removing a featured game: if your form posts and then redirects to `/admin/venues` with no venue in the query string, the admin loses their place and has to find the venue again. Redirect back to the venue they were working on._
 
 - I want to easily add and remove featured games for a given venue. [A32]
   - _No more than 3 games will ever be featured at a given venue._
 
-  - _There \***\*may\*\*** be no games featured at a venue!_
+  - _There **may** be no games featured at a venue!_
 
-  - _Games must come from the **games** table provided to you in **/the-project-template/database/seed.sql**._
+  - _Games must come from the **games** table provided to you in **database/seed.sql**._
 
   - _This requirement does NOT add games to the provided games table; instead, you are marking pre-existing games as featured at pre-existing venues._
 
-  - _To make your life easier, you can handle adding a featured game in \***\*one\*\*** of three ways:_
+  - _To make your life easier, you can handle adding a featured game in **one** of three ways:_
     1. _Assume that the admin will enter a valid game id in a text field, or_
 
     2. _Assume that the admin will enter a valid game title in a text field, or_
@@ -175,8 +192,10 @@ _Time to dust off those COMP2521 skills._
 
 The project uses **SQLite** - one file, no server, nothing to install beyond what the template already needs. Three files in the template's `database/` directory matter to you:
 
-- **`/the-project-template/database/schema.sql`** - your table definitions. This is the source of truth for the shape of your database.
-- **`/the-project-template/database/seed.sql`** - your data.
+_Paths like `database/schema.sql` are relative to the root of **your project repository**, not to the repository you're reading this in._
+
+- **`database/schema.sql`** - your table definitions. This is the source of truth for the shape of your database.
+- **`database/seed.sql`** - your data.
 - **`database/build.php`** - run `php database/build.php` to rebuild `database/app.db` from those two files.
 
 The `.db` file itself is generated and gitignored. **Never commit it.** If your tables and data exist only in your local `app.db` and not in the two `.sql` files, they don't exist as far as I'm concerned, and your project will not be marked.
@@ -193,9 +212,13 @@ Two tables are nowhere near enough to fulfil the requirements. This is where you
 
 - Populate your tables with realistic data. Each table (except for the administrator table) should have **100 or more** records. Do **_not_** go crazy here - if you make a ton of records, you will run into issues; not necessarily performance issues, just PITA issues for you as a developer. For tables that track time-sensitive events like plays, make sure your data is spread across September through December, or your analytics will show you nothing useful as you move through the semester.
 
+  _The plays table is the exception to the "100 is fine" rule. 100 plays spread across four months leaves about 25 in any given month, which across a few hundred games means a top-five list of twenty-way ties at one play each. Aim for **250 or more plays**, and concentrate them on **perhaps 30 to 40 games** rather than scattering them across the whole catalogue. Real venues have games that get played constantly and games that gather dust; your data should look like that too. Your scores table inherits that increase, and that's fine - a thousand rows is nothing here._
+
 **Use [DB Browser for SQLite](https://sqlitebrowser.org/) to poke at `app.db`** while you're developing - it's far quicker than writing a page just to see whether a query works. Just remember that anything you change there is wiped the next time you rebuild. The `.sql` files are where changes go to last.
 
 _Unless you're very lucky, or a database savant, chances are you will need to revisit this process multiple times over the semester. This doesn't indicate a deficiency on your part - it's simply the nature of non-trivial projects. Consider each revisit a (somewhat) good thing: you're going to the DB dojo and gaining skills....but don't revisit TOO often, because each DB change you make will almost certainly have effects on your code, which can cause you to spend your time chasing new bugs._
+
+_One timezone note, because it quietly affects three of your requirements. PHP defaults to UTC and SQLite has no timezone concept at all, so if you store `datetime('now')` you are storing UTC - and a play logged at 6pm on December 1st in Calgary lands in your database as December 2nd. That shifts month boundaries, day-of-week buckets, and the previous-login time A14 asks for in MST/MDT. Set `date_default_timezone_set('America/Edmonton')` early and store local times consistently._
 
 ## Using AI for Table & Record Creation
 
@@ -211,7 +234,11 @@ For example, I used a prompt along these lines to generate the venues data you'v
     venue name, address, city, abbreviated province, postal code, latitude,
     longitude, phone number. Output it as SQLite-compatible INSERT statements.
 
-Generating rows is a reasonable use of these tools. Designing your schema is not - that's the part you're being assessed on, and it's the part that will hurt you _later_ if you outsource it _now_.
+Generating rows is a reasonable use of these tools. Designing your schema is a different matter - and to be clear, this is advice rather than a rule. The course outline means what it says: there are no restrictions on using these tools for the Project, and I'm not going to pretend I could detect it!
+
+Here's what it actually costs you: A schema **you** didn't design is one **you** can't debug, and you **will** be debugging it in November when the public-facing app tries to write a play. It's also 4% of Data Model Quality, marked by reading `schema.sql`. And it's the thing I'll ask you to explain if you come to me about the cap not fitting - "tell me why one of your tables is shaped the way it is" is a question with a very short answer if the table isn't yours.
+
+Design it yourself. Show me the ERD. Use that human brain you got.
 
 # Additional Administrative Portal Requirements & Restrictions
 
@@ -231,9 +258,12 @@ Generating rows is a reasonable use of these tools. Designing your schema is not
 
 ### Restrictions
 
-- **`www/core/Router.php` and `www/core/DatabaseHelper.php` are not modified.**
+- **`www/core/Router.php` and `www/core/DatabaseHelper.php` are not to be modified.**
 
-- **No dependencies.** No Composer, no `vendor/`, no npm runtime packages, no third-party JavaScript. There is one exception, covered below, for CSS.
+- **No dependencies.** No Composer, no `vendor/`, no third-party JavaScript, and no npm packages that your site actually uses at runtime.
+  - _The template ships with a `package.json` and the tooling behind `npm run check`. That's mine, it's dev tooling rather than something your site loads, and it stays where it is. Don't delete it, and don't commit `node_modules/` - it's already gitignored._
+
+  - _There is one further exception, covered below, for CSS._
 
 - **Never pass a request superglobal to `view()`. The documentation for that function
   explains why.**
@@ -256,7 +286,9 @@ I'm **_deliberately_** leaving the design of both sites open-ended. **You are re
 
 ## Showing the analytics visually
 
-Two of the four Dashboard analytics - plays by day of the week, and the top five games - must be presented **visually as well as numerically**. Seven bars and five bars, respectively.
+Two of the four Dashboard analytics - plays by day of the week, and the top five games - must be presented **visually as well as numerically**. Seven bars for the days of the week, and one bar per game for the top-five list.
+
+_Note that "five bars" isn't always five. A15 tells you that ties at the boundary are all shown, so build the list from whatever your query returns rather than assuming a fixed number of rows. December is a short window and ties are common in it._
 
 This has to be done with **CSS only**. There is no JavaScript in the administrative portal, and that includes charting libraries, so Chart.js and friends are out. A bar is a `<div>` with a width you compute in PHP; that is the whole technique.
 

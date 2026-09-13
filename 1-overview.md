@@ -12,7 +12,7 @@ _It is quite a complex project. If it is completed successfully, it will make a 
 
 You will build two sites for a fictitious Canadian company called **MeepleMatchups**, which hopes to make gazillions of (Canadian) dollars by connecting board gamers with games, with venues where those games can be played, and with each other.
 
-A **venue** is any public place where you can sit down and play a board game. In practice that means board game cafés, game shops with play space, public libraries that lend games and run game afternoons, and community centres that host game nights. You are given a hundred of them (see `/the-project-template/database/seed.sql`), spread across the country.
+A **venue** is any public place where you can sit down and play a board game. In practice that means board game cafés, game shops with play space, public libraries that lend games and run game afternoons, and community centres that host game nights. You are given a hundred of them (see `database/seed.sql`), spread across the country.
 
 The two sites share one database. That is not an incidental detail: the analytics on the administrative portal dashboard are computed from the plays that members log in the public-facing app! You design, build, seed, and read from tables in the PHP half of the semester, and read and write to them in the JavaScript half.
 
@@ -20,7 +20,7 @@ The two sites share one database. That is not an incidental detail: the analytic
 
 The first site is an **administration portal**. Administrators can log in, view site analytics, access member data, and manage which games are featured at venues across the country - that is, which games a venue currently has available to play. You will use PHP to accomplish this.
 
-Ideally, you should have this site complete by the end of Reading Week; technically, you have until the project due date, but the second half of the semester does not leave room to still be finishing the first half.
+Ideally, you should have this site complete by the end of WK-06 - the week of October 19 (the week after Reading Week), which is the last week the milestones give you for it. Technically you have until the project due date, but the second half of the semester does not leave room to still be finishing the first half.
 
 ## Site #2: Public-Facing Application
 
@@ -39,13 +39,15 @@ So: think about what tables you will need (in addition to the ones you have been
 Eight documents make up the project specification:
 
 1. **Overview**: this document.
+1. **Suggested Milestones**: a week-by-week plan for staying on schedule.
 1. **Administrative Portal Requirements**: what the PHP site has to do.
 1. **Public-Facing App Requirements**: what the JavaScript app has to do.
 1. **Admin Portal Authentication**: gives guidance on logon feature in the admin portal.
-1. **Suggested Milestones**: a week-by-week plan for staying on schedule.
 1. **Marking Scheme**: the way the project will be marked.
 1. **Submission Checklist**: a checklist you are expected to go through and sign off on as part of the submission process.
 1. **Submission Process**: how to hand it in, and what happens if you don't follow it.
+
+_That's the order I'd read them in, it's the order the filenames are numbered in, and it's the order the repository README lists them in._
 
 Requirements in the two requirements documents are numbered. The submission checklist you complete at the end of semester refers to those numbers directly, so a checklist item saying "[A14]" points at exactly one requirement in the Admin Portal Requirements doc you can go and re-read.
 
