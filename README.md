@@ -39,7 +39,7 @@ Read these in order. The first one is short and tells you what you're building.
 
 ## Getting started
 
-1. Accept the Classroom 50 assignment: **[LINK TO BE ADDED]**
+1. Accept the Classroom 50 assignment: [the-project-template](https://classroom50.org/MRU-CSIS-3512-001-202604-PROJ/mru-csis-3512-001-202604-proj-classroom/assignments/the-project/accept?k=loeb2tof)
 2. Clone the resulting repository to your development machine.
 3. Copy `7-submission-checklist.md` from this repo into the root of your project repo, and **rename it to `submission-checklist.md`**. That exact filename is what I mark against.
 4. Read the Overview, then the Administrative Portal Requirements.
