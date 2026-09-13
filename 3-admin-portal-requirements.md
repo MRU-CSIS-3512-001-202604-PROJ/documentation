@@ -259,6 +259,7 @@ Design it yourself. Show me the ERD. Use that human brain you got.
 ### Restrictions
 
 - **`www/core/Router.php` and `www/core/DatabaseHelper.php` are not to be modified.**
+  - _This one isn't automated - `npm run check` only flags **new** files added under `www/core/`, not edits to the two that already belong there - so nothing actually stops you changing them. The reason to leave them alone is practical rather than a matter of getting caught: a framework you've quietly changed is one you now have to understand and debug yourself, and the whole point of handing everyone the same small fixed framework is that everyone is working from the same starting point. I also read this code when I mark, and I may ship updated versions of these two files during the term, which will only slot into your project cleanly if yours are untouched._
 
 - **No dependencies.** No Composer, no `vendor/`, no third-party JavaScript, and no npm packages that your site actually uses at runtime.
   - _The template ships with a `package.json` and the tooling behind `npm run check`. That's mine, it's dev tooling rather than something your site loads, and it stays where it is. Don't delete it, and don't commit `node_modules/` - it's already gitignored._
@@ -272,7 +273,25 @@ Design it yourself. Show me the ERD. Use that human brain you got.
 
 - Do not use any other PHP framework (Symfony, Laravel, and so on).
 
-_Most of the above is checked automatically - run `npm run check` before you submit anything, and fix what it reports._
+**Run `npm run check` before you submit anything, and fix what it reports.** It's a mechanical check rather than a marker, so it's worth being precise about what it does and does not do for you.
+
+It catches exactly six kinds of problem, and nothing else:
+
+1. **Dependencies** - a `composer.json` or `composer.lock`, a `vendor/` directory, anything listed under runtime `dependencies` in `package.json`, a remotely loaded `<script src="http…">`, or a remote `<link>` that isn't a plain stylesheet. _(That last one is what flags the Tailwind Play CDN.)_
+
+2. **New files under `www/core/`** - only `Router.php` and `DatabaseHelper.php` are allowed to live there.
+
+3. **Building your own database connection** - a `new PDO` anywhere except `DatabaseHelper.php` and `database/build.php`, or any use of `mysqli`, `mysql_connect`, or `pg_connect`.
+
+4. **Unescaped output in a view** - a `<?= … ?>` whose contents aren't a function call: a bare variable that should have been wrapped in `e()`.
+
+5. **A controller rendering a view with a bare `require`/`include`** instead of going through `view()`.
+
+6. **Passing a whole request superglobal to `view()`** - `view(…, $_GET)` and the like.
+
+Two of those - the escaping in item 4 and the `view()` rendering in item 5 - aren't in the restriction list above, but the check covers them anyway, so a clean run also tells you your views escape their output and your controllers render through `view()`.
+
+What the check does **not** do matters just as much. It knows nothing about the **no-JavaScript-in-the-admin-portal** rule - it only catches remotely loaded scripts, not the local JS you might write - and it doesn't notice **another framework**, or whether your **API endpoints follow the `/api/…` format**. A clean run clears those six items and nothing more; it is **not** proof that your project complies. You still have to satisfy the rest by hand, which is what Part 1 of the submission checklist is for.
 
 # Design Expectations
 

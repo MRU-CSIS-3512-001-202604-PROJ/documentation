@@ -4,8 +4,6 @@
 
 **Fall 2026**
 
-[Still needs a lookthrough! JP, 2026-09-12]
-
 **Instructions:** Before submitting your project, go through this entire checklist in order. Test each feature and place a check (`x`) in the box only if you can confirm it works exactly as described. If a feature is buggy, put a `B` in the box instead of a check, and describe it in the `Known Bugs` section at the end of this document. A `B` counts the same as an empty box when I work out your bundles - it does not earn you the item. What it buys you is that I know you knew, and I know where to look.
 
 Before you fill this in, read the **Honesty Clause** in the Marking Scheme. An unchecked item costs you that bundle and leaves your revision token available; a checked item that turns out not to work costs you that bundle **and** your token.
