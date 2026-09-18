@@ -69,18 +69,18 @@ _The remaining functionalities assume I have logged in successfully:_
 
 - I want to clearly see the following analytics: [A15]
 
-_Throughout these analytics, a play belongs to the month, and to the day of the week, of **the date the game was played** - the date captured when the play was logged, not the moment the row was written to the database. Your seed data is all written at the same instant when you run `build.php`, so the second reading would put every one of your plays in the same month and leave the rest empty._
+  _Throughout these analytics, a play belongs to the month, and to the day of the week, of **the date the game was played** - the date captured when the play was logged, not the moment the row was written to the database. Your seed data is all written at the same instant when you run `build.php`, so the second reading would put every one of your plays in the same month and leave the rest empty._
 
-- The number of plays logged **this** calendar month, shown alongside the number logged **last** calendar month.
+  1. The number of plays logged **this** calendar month, shown alongside the number logged **last** calendar month.
 
-- The average number of plays per member this month, for **standard** members and for **premium** members, each shown to one decimal place.
-  - _Be precise about what this counts, because it's easy to get two different numbers from the same data. A member counts as having played a play if they were one of its players. A play with four premium players therefore counts once for each of those four members - which means this analytic and the "plays this month" analytic above are counting different things, and that's expected._
+  2. The average number of plays per member this month, for **standard** members and for **premium** members, each shown to one decimal place.
+      - _Be precise about what this counts, because it's easy to get two different numbers from the same data. A member counts as having played a play if they were one of its players. A play with four premium players therefore counts once for each of those four members - which means this analytic and the "plays this month" analytic above are counting different things, and that's expected._
 
-  - _Divide by **every** member on that plan, not just the ones who played. A plan whose members mostly sat out this month should show a low average; that's the analytic telling you something true._
+      - _Divide by **every** member on that plan, not just the ones who played. A plan whose members mostly sat out this month should show a low average; that's the analytic telling you something true._
 
-- The number of plays logged on each day of the week, across **all** plays in the database rather than a single month. All seven days are shown, including any day with no plays.
+  3. The number of plays logged on each day of the week, across **all** plays in the database rather than a single month. All seven days are shown, including any day with no plays.
 
-- The five games played the most **this** calendar month, in descending order of play count. If a tie means more than five games qualify, all tied games are shown, in alphabetic order within the tie.
+  4. The five games played the most **this** calendar month, in descending order of play count. If a tie means more than five games qualify, all tied games are shown, in alphabetic order within the tie.
 
 ### Implementation Restrictions
 
