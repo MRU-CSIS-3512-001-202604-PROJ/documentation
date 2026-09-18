@@ -34,6 +34,16 @@ Read that sentence again and ask yourself how many tables it takes to store it. 
 
 So: think about what tables you will need (in addition to the ones you have been given), what fields those tables need, and how all the different tables will need to be related in order to handle the features you are being asked to implement. Ask me about it if you're unsure. This is the cheapest hour you will spend on this project.
 
+## Naming Your Controller and View Files
+
+There's exactly one `index.php` in this whole project: `www/public/index.php`. That's the front controller - the single entry point every request passes through before the Router sends it anywhere else. There's no need to create any more `index.php` files anywhere.
+
+You'll be tempted to, because I've been using `index.php` as a default filename for controllers and views a lot up to now, but it's time to be more intentional with our naming: your Project will have numerous controllers and views and naming everything `index.php` is going to make it challenging to work and keep asking yourself things like, "Wait...is this `index.php` my Dashboard controller, or my login page view?".
+
+So name your files for what they _do_ or _are_. Most of your routes make this easy - `admin/dashboard.php` for `/admin/dashboard`, `admin/members.php` for `/admin/members`, and so on. For the two that don't have a trailing word, name them for what they do instead: `admin/login.php` for `/admin`, and something like `app.php` for `/`.
+
+A couple of habits that make this pay off later: keep your controller and its view under the same name in their respective folders, so `admin/dashboard.php` (the controller) pairs with `admin/dashboard.php` (the view) - it means you never have to guess.
+
 ## Where everything is
 
 Eight documents make up the project specification:
