@@ -85,6 +85,7 @@ _The remaining functionalities assume I have logged in successfully:_
 ### Implementation Restrictions
 
 - All analytics are pulled from database tables; they're not hard-coded or generated programmatically. Because of this, you will need to make additional tables and records for those tables. See the Required Database Tables & Records section below.
+  - _[2026-09-25] "Hard-coded or generated programmatically" refers to the **numbers**, not the labels. Every count and average you display must come from a query against your tables. The seven day names for the day-of-week analytic are a fixed list, so you can supply them any reasonable way: a lookup table, a `VALUES` list in your SQL, or an array in PHP. Any day your query doesn't return shows 0. What's not allowed is typing counts into your code, or making up data in PHP instead of reading it from the database._
 
 - The "show previous login time" feature must be done using cookies - but be clear about which part the cookie is doing:
   - _The **timestamp itself** lives in your administrator table. That's what the hint on the Login page is pointing at: record when each administrator logs in, and you have last-login for free._
