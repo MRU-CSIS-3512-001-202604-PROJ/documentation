@@ -141,6 +141,9 @@ _Wednesday, September 30 is a campus closure (Truth & Reconciliation) - no lectu
   - _The "display previous login time" functionality will not be functional at this point._
 
 - Complete the Venue Listings Page by implementing the addition and removal of featured games for a given venue.
+  - _[2026-10-01] Adding is done with a form and removing is done with a hyperlink, as the requirements doc says. A link that changes data is not how a production application would do it (state changes belong in POST requests), but it's a deliberate simplification for this Project._
+
+  - _[2026-10-01] Think about the edge cases before you code: what should happen if the admin tries to add a fourth game to a venue, or the same game twice?_
 
 - Validate the Member Data and Venue Listings Pages using the W3C Markup Validation Service and correct any errors.
   - _There's a good chance that you may have introduced some markup errors when you populated these pages with database data._
