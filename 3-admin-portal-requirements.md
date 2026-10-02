@@ -62,7 +62,9 @@ _The remaining functionalities assume I have logged in successfully:_
 
 - I want to be able to go to the **_Venue Listings_** Page easily. [A13]
 
-- I want to clearly see the date and time (in MST/MDT) when I had previously logged in - but only when I first land on this page after logging in; otherwise, I don't want to see that information. [A14]
+- I want to clearly see the date and time (in Calgary local time) when I had previously logged in - but only when I first land on this page after logging in; otherwise, I don't want to see that information. [A14]
+  - _[2026-10-02] This used to say "in MST/MDT". Alberta stops changing its clocks on November 1, 2026 and stays at UTC-6 from then on, so neither label will be right by the time I mark. What I want is the correct Calgary time. If you show a zone label, let PHP produce it (the T in format()) rather than typing one yourself._
+  
   - _What if the admin is logging in for the very first time? You can either sidestep the issue by making sure your db tables contain data that don't represent that situation, or you can display some kind of message indicating that the admin has never logged in before. (When I assess your Project, I will be logging in as myself, logging out, and then logging back in again.)_
 
   - _I don't care which of those two you pick, as long as neither one leaves a blank space or throws an error. The case I'm certain to see is the normal one, so the first-login case is yours to handle however you like._
@@ -88,7 +90,7 @@ _The remaining functionalities assume I have logged in successfully:_
   - _[2026-09-25] "Hard-coded or generated programmatically" refers to the **numbers**, not the labels. Every count and average you display must come from a query against your tables. The seven day names for the day-of-week analytic are a fixed list, so you can supply them any reasonable way: a lookup table, a `VALUES` list in your SQL, or an array in PHP. Any day your query doesn't return shows 0. What's not allowed is typing counts into your code, or making up data in PHP instead of reading it from the database._
 
 - The "show previous login time" feature must be done using cookies - but be clear about which part the cookie is doing:
-  - _The **timestamp itself** lives in your administrator table. That's what the hint on the Login page is pointing at: record when each administrator logs in, and you have last-login for free._
+  - _The **timestamp itself** lives in your administrator table. That's what the hint on the Login page is pointing at: record when each administrator logs in, and you have last-login for free. [2026-10-02] Store it in UTC - see the timezone note under Required Database Tables & Records._
 
   - _The **cookie** is what makes it appear once and then stop appearing. Land on the Dashboard with no cookie set, show the time and set the cookie; land on it with the cookie set, show nothing._
 
@@ -219,7 +221,15 @@ Two tables are nowhere near enough to fulfil the requirements. This is where you
 
 _Unless you're very lucky, or a database savant, chances are you will need to revisit this process multiple times over the semester. This doesn't indicate a deficiency on your part - it's simply the nature of non-trivial projects. Consider each revisit a (somewhat) good thing: you're going to the DB dojo and gaining skills....but don't revisit TOO often, because each DB change you make will almost certainly have effects on your code, which can cause you to spend your time chasing new bugs._
 
-_One timezone note, because it quietly affects three of your requirements. PHP defaults to UTC and SQLite has no timezone concept at all, so if you store `datetime('now')` you are storing UTC - and a play logged at 6pm on December 1st in Calgary lands in your database as December 2nd. That shifts month boundaries, day-of-week buckets, and the previous-login time A14 asks for in MST/MDT. Set `date_default_timezone_set('America/Edmonton')` early and store local times consistently._
+_[2026-10-02] One timezone note, because it quietly affects three of your requirements. The rule is **store UTC, convert when you display**. PHP defaults to UTC and SQLite has no timezone concept at all, so `datetime('now')` gives you UTC whether you meant it or not._
+
+- _**The previous-login time (A14) is a moment.** Store it in UTC, and convert it to Calgary time only when you display it, using `DateTime` with the `America/Edmonton` timezone. Don't subtract hours yourself: the right number changes on November 1 this year._
+
+- _**The date a play happened is not a moment - it's a calendar date somebody chose.** Store it exactly as given (`2026-12-01`) and never convert it. What you must not do is stamp a play with `datetime('now')` and call that the date played: 6pm on December 1st in Calgary is already December 2nd in UTC, which shifts your month boundaries and your day-of-week buckets._
+
+- _**"This month" and "last month" (A15) depend on what "now" means.** Asking SQLite for the current month gives you the UTC month, which is wrong for the last few hours of the last day of every month in Calgary. Work out the current month in PHP, in Calgary time, and pass it to your query as a bound parameter._
+
+_Why the change: the earlier version of this note told you to call `date_default_timezone_set('America/Edmonton')` and store local times. Stored local times go wrong when the clock rules change, and Alberta's change on November 1. Stored UTC never has that problem. If you already followed the earlier advice, your play dates are unaffected as long as they are plain dates, and the previous-login feature isn't due until WK-06, so there should be little or nothing to redo._
 
 ## Using AI for Table & Record Creation
 

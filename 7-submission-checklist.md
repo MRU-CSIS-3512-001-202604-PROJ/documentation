@@ -95,7 +95,8 @@ _Before starting, I have opened my browser in **Laptop L mode** (1440px wide)._
 - [ ] There is a clear way to log out; doing so takes me back to the Login Page with an empty login form. [A11]
 - [ ] There is a clear way to get to the Member Data Page and it has resource path `/admin/members`. [A12,A16]
 - [ ] There is a clear way to get to the Venue Listings Page and it has resource path `/admin/venues`. [A13,A25]
-- [ ] When I first land here after logging in, the date and time of my previous login is clearly visible, in MST/MDT - or, if this is the very first login for that account, whatever my site shows instead. [A14]
+- [ ] When I first land here after logging in, the date and time of my previous login is clearly visible, in Calgary local time - or, if this is the very first login for that account, whatever my site shows instead. [A14]
+    - _[2026-10-02] This used to say "in MST/MDT". Alberta stops changing its clocks on November 1, 2026, so that label no longer fits. See A14 in the requirements._
 - [ ] If I leave this page and come back, the date/time of my last login is no longer visible, and I've used cookies to accomplish this. [A14]
 - [ ] **Analytic 1:** plays logged this calendar month, shown alongside plays logged last calendar month. [A15]
 - [ ] **Analytic 2:** average plays per member this month, separately for standard and premium members, each to one decimal place. [A15]
