@@ -113,3 +113,11 @@ _If you chose to reset your previous-login cookie at logout rather than at login
 Oh, right. If there was a problem with the login, you're supposed to inform the user, right? I'll give you a hint: you can use **sessions** to store a message to display on the login page. You'll need to alter your control code for the GET route, since if you arrive on the login page via a GET, you might be here because the user hasn't successfully logged in and so you will need to show a message - the message stored in the session.
 
 _The same trick handles the other half of that requirement: remembering the email the user typed so they don't have to type it again, while pointedly not remembering the password._
+
+## [2026-10-07] Authentication & Authorization Demo
+
+There's now a repo you can look at and play with that demonstrates nicely how authentication and authorization works in our framework: https://bit.ly/4zlbC4U
+
+Inside that repo is a authentication-and-authorization-how-to document. Read it.
+
+No, really.
