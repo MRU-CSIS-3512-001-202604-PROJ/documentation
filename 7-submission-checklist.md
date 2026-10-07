@@ -88,6 +88,10 @@ _Before starting, I have opened my browser in **Laptop L mode** (1440px wide)._
 - [ ] The login form obfuscates the password. [A4]
 - [ ] When I log in with `foo@foo.com` and `comp3512`, I wind up back at the login form with `foo@foo.com` filled in, the password field empty, and a suitably vague notification telling me the login was unsuccessful. [A5,A6,A8]
 - [ ] When I log in with `jpratt@mtroyal.ca` and `foo`, I wind up back at the login form with `jpratt@mtroyal.ca` filled in, the password field empty, and a suitably vague notification telling me the login was unsuccessful. [A5,A6,A8]
+- [ ] After one of the failed logins above, when I visit `/admin` again (click the address bar and press Enter), the login form is empty and the notification is gone. [A3,A5,A6]
+    
+    _[2026-10-07] Added. See the clarification under A5 and A6 in the requirements._
+
 - [ ] When I log in with `jpratt@mtroyal.ca` and `comp3512`, I land on the `/admin/dashboard` page. [A7,A8]
 
 #### Dashboard Page

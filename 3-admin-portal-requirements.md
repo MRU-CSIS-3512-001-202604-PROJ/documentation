@@ -30,6 +30,8 @@ _Note: As the term ~~grinds~~ goes on I will occasionally clarify a requirement.
 
 - When I submit the login form, if the login wasn't successful, I want my email to be pre-filled to make logging in again easier for me, but I don't want my password to be pre-filled, because that's a security no-no. [A6]
 
+  _[2026-10-07] The notification and the pre-filled email belong to the attempt I just made. They appear once, right after a failed login. If I come back to the login page later, by visiting /admin again, I should see an empty form with no notification._
+
 - When I submit the login form, if my login is successful, I want to be taken to the **_Dashboard_** Page. [A7]
 
 - I want only authorized administrators to be able to log in to the portal. [A8]
