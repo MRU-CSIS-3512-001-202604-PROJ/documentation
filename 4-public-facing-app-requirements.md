@@ -176,7 +176,11 @@ Some suggestions:
 
 - Populate those tables with realistic data. Each table (except your administrator table!) should have **100 or more** records. Do **_not_** go crazy here - if you make a ton of records, you will run into issues; not necessarily performance issues, just PITA issues for you as a developer.
 
+  _[2026-10-13] The 100-record minimum applies to tables of things your app records or manages (members, venues, games, plays, and so on). A lookup table holding a fixed reference list, such as provinces, plan types or day names, has exactly as many rows as the list has, and that's fine._
+
 _Keep using [DB Browser for SQLite](https://sqlitebrowser.org/) to check your queries against `app.db` before you wire them into an endpoint. Remember that anything you change there is wiped on the next rebuild._
+
+
 
 # Custom API Requirements
 

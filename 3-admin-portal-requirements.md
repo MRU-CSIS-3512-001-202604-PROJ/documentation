@@ -22,6 +22,8 @@ _Note: As the term ~~grinds~~ goes on I will occasionally clarify a requirement.
 
 - I want to log in to the administrative portal with an email and a password. [A2]
 
+  _[2026-10-13] `type="email"` **does** technically trigger the browser's built-in validation. I won't penalize it, but I will penalize validation you've added on purpose in your HTML, such as required or a pattern attribute. The checks that matter are the ones your PHP does._
+
 - If this is the first time I've attempted to log in for this session, the login form should be empty. [A3]
 
 - When I type my password, it should be obfuscated. [A4]
@@ -129,6 +131,8 @@ _The remaining functionalities assume I have logged in successfully:_
 
   - The total number of plays they have logged.
 
+    _[2026-10-13] "Plays they have logged" means plays the member took part in as a player, the same way the A15 averages count them. It doesn't matter who submitted the play._
+
 - I want to be able to filter the member display by the plan type. [A22]
 
 - I want to be able to sort the member data by member name, both in ascending and descending order, and see clearly which way that data is currently being sorted. [A23]
@@ -218,6 +222,8 @@ Two tables are nowhere near enough to fulfil the requirements. This is where you
 - Populate your tables with realistic data. Each table (except for the administrator table) should have **100 or more** records. Do **_not_** go crazy here - if you make a ton of records, you will run into issues; not necessarily performance issues, just PITA issues for you as a developer. For tables that track time-sensitive events like plays, make sure your data is spread across September through December, or your analytics will show you nothing useful as you move through the semester.
 
   _The plays table is the exception to the "100 is fine" rule. 100 plays spread across four months leaves about 25 in any given month, which across a few hundred games means a top-five list of twenty-way ties at one play each. Aim for **250 or more plays**, and concentrate them on **perhaps 30 to 40 games** rather than scattering them across the whole catalogue. Real venues have games that get played constantly and games that gather dust; your data should look like that too. Your scores table inherits that increase, and that's fine - a thousand rows is nothing here._
+
+  _[2026-10-13] The 100-record minimum applies to tables of things your app records or manages (members, venues, games, plays, and so on). A lookup table holding a fixed reference list, such as provinces, plan types or day names, has exactly as many rows as the list has, and that's fine._
 
 **Use [DB Browser for SQLite](https://sqlitebrowser.org/) to poke at `app.db`** while you're developing - it's far quicker than writing a page just to see whether a query works. Just remember that anything you change there is wiped the next time you rebuild. The `.sql` files are where changes go to last.
 
