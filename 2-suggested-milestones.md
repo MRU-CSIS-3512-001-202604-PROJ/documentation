@@ -20,7 +20,7 @@ _The consequence of this decision is that WK-02 is heavier than it would otherwi
 
 ## WK-02: Week of 2026-09-14
 
-_Add/drop deadline is Monday. PHP Lab Test 1 is on Wednesday. This is a full week!_
+_Add/drop deadline is Monday. Lab Test 1 (PHP) is on Wednesday. This is a full week!_
 
 - Read all Project documentation, starting with the Overview.
 
@@ -150,7 +150,7 @@ _Wednesday, September 30 is a campus closure (Truth & Reconciliation) - no lectu
 
 ## WK-05: Week of 2026-10-05
 
-_This is going to be a rough week: you have PHP Lab Test 2 on Wednesday and the PHP Midterm on Friday. The milestone is deliberately light._
+_This is going to be a rough week: you have Lab Test 2 (PHP) on Wednesday and the PHP Midterm on Friday. The milestone is deliberately light._
 
 - Complete the Member Data Page by implementing the filtering and sorting requirements.
 
@@ -178,7 +178,7 @@ _JavaScript lectures begin this week. This is your last scheduled week on the ad
 
 ## WK-07: Week of 2026-10-26
 
-_JS Lab Test 1 is on Wednesday._
+_Lab Test 3 (JS) is on Wednesday._
 
 - (Re)read the Public-Facing App Requirements doc and make sure you have a general idea of the requirements.
 
@@ -231,7 +231,7 @@ _Wednesday, November 11 is a campus closure (Remembrance Day) - no lecture and n
 
 ## WK-10: Week of 2026-11-16
 
-_JS Lab Test 2 is on Wednesday. Withdrawal deadline is Friday._
+_Lab Test 4 (JS) is on Wednesday. Withdrawal deadline is Friday._
 
 ### PHP API Endpoint Tasks
 
