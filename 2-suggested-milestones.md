@@ -126,6 +126,8 @@ _This is the heaviest database week of the semester. Start early._
 
   - _Each table (except your administrator table) should have **100 or more** records. Do **not** go crazy here - if you make a ton of records, you will run into issues; not necessarily performance issues, just PITA issues for you as a developer._
 
+    _[2026-10-13] The 100-record minimum applies to tables of things your app records or manages (members, venues, games, plays, and so on). A lookup table holding a fixed reference list, such as provinces, plan types or day names, has exactly as many rows as the list has, and that's fine._
+
   - _`play` data must be spread across **September through December**, across **all seven days of the week**, and concentrated on a subset of games rather than scattered evenly - **250 or more plays across 30 to 40 games** gives you a top-five list with real winners in it, where 100 plays scattered across the whole catalogue gives you a twenty-way tie at one play each. Plan your generated data accordingly - this catches people out every single year._
 
 - Build and test the queries that return the four required Dashboard analytics. Do the same for the queries that sort and filter member data.
