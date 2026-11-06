@@ -194,7 +194,7 @@ _Lab Test 3 (JS) is on Wednesday._
 
 ## WK-08: Week of 2026-11-02
 
-_The 25% feedback deadline is Friday, November 6._
+_The 25% feedback deadline is Friday, November 6. <-- This is for all courses at MRU! It's not a YOU thing, it's a ME thing!_
 
 ### Static Design Tasks
 
