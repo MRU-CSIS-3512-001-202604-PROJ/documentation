@@ -130,6 +130,11 @@ _This is the heaviest database week of the semester. Start early._
 
   - _`play` data must be spread across **September through December**, across **all seven days of the week**, and concentrated on a subset of games rather than scattered evenly - **250 or more plays across 30 to 40 games** gives you a top-five list with real winners in it, where 100 plays scattered across the whole catalogue gives you a twenty-way tie at one play each. Plan your generated data accordingly - this catches people out every single year._
 
+    _[2026-11-08] "250 or more plays across 30 to 40 games" means most of your
+plays should land on about 30 to 40 games. A handful of other games with a
+play or two each is fine, and realistic. What I'm checking is that your
+top-five list has clear winners, not that no other game was ever played._
+
 - Build and test the queries that return the four required Dashboard analytics. Do the same for the queries that sort and filter member data.
   - _Keep these queries somewhere so that you can eventually implement them with PHP. Getting them right in DB Browser for SQLite first is far easier than debugging them through PHP - you see the result set immediately, with nothing else in the way._
 
