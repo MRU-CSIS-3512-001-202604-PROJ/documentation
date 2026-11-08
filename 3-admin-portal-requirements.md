@@ -137,6 +137,11 @@ _The remaining functionalities assume I have logged in successfully:_
 
 - I want to be able to sort the member data by member name, both in ascending and descending order, and see clearly which way that data is currently being sorted. [A23]
 
+  _[2026-11-08] If a member's name starts with an accented letter, like
+"Émilie", SQLite will sort it after Z. Fixing that properly needs tools this
+project doesn't allow, so I won't take marks off for it. Sorting regardless of
+upper and lower case is still expected._
+
 - If I filter the display by plan type, and then sort the filtered results, I want only the filtered results to be sorted. [A24]
 
 ### Implementation Restrictions
